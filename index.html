@@ -184,6 +184,36 @@ footer a:hover{color:var(--amber)}
 .socials svg{width:16px;height:16px;fill:currentColor}
 .foot-bottom{border-top:1px solid rgba(246,239,225,.1);padding-top:24px;display:flex;justify-content:space-between;font-size:.82rem;flex-wrap:wrap;gap:1rem}
 
+/* MOMENTS (photo marquee) */
+.moments{background:var(--paper);padding:100px 0 90px;overflow:hidden;position:relative}
+.moments-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px;flex-wrap:wrap}
+.moments-head h2{font-size:clamp(2.3rem,5vw,4rem);max-width:640px;margin-top:.7rem}
+.moments-head h2 em{color:var(--amber-deep);font-style:italic}
+.moments-head p{color:var(--muted);max-width:360px;font-size:1.04rem}
+.marquee{display:flex;width:max-content;gap:22px;margin-bottom:22px}
+.marquee.left{animation:slideL 45s linear infinite}
+.marquee.right{animation:slideR 50s linear infinite}
+.moments:hover .marquee{animation-play-state:paused}
+.m-card{position:relative;width:320px;height:230px;border-radius:18px;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#c9b48a,#8a6d3b);box-shadow:0 14px 30px rgba(28,26,23,.14)}
+.marquee.right .m-card:nth-child(odd){width:260px}
+.marquee.left .m-card:nth-child(even){width:380px}
+.m-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.m-card:hover img{transform:scale(1.08)}
+.m-card span{position:absolute;left:14px;bottom:14px;background:rgba(20,42,31,.82);color:var(--cream);font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.45rem .85rem;border-radius:999px;backdrop-filter:blur(4px)}
+@keyframes slideL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes slideR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.ticker{margin-top:58px;background:var(--green);color:var(--cream);padding:22px 0;transform:rotate(-1.5deg);width:104%;margin-left:-2%;overflow:hidden}
+.ticker-track{display:flex;width:max-content;animation:slideL 28s linear infinite}
+.ticker-track span{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.4rem,3vw,2.2rem);padding:0 28px;white-space:nowrap}
+.ticker-track span:nth-child(even){color:var(--amber);font-style:italic}
+@media (max-width:560px){
+  .m-card,.marquee.left .m-card:nth-child(even),.marquee.right .m-card:nth-child(odd){width:220px;height:160px}
+  .moments{padding:70px 0 60px}
+}
+@media (prefers-reduced-motion:reduce){
+  .marquee,.ticker-track{animation:none}
+}
+
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
 .reveal.in{opacity:1;transform:none}
@@ -279,6 +309,52 @@ footer a:hover{color:var(--amber)}
   </div>
 </section>
 <div class="check"></div>
+
+<!-- ========== MOMENTS (animated photo marquee) ========== -->
+<section class="moments">
+  <div class="wrap moments-head reveal">
+    <div>
+      <span class="eyebrow">Gemütlichkeit</span>
+      <h2>Every night feels like <em>a festival.</em></h2>
+    </div>
+    <p>Golden steins, warm pretzels, string lights and long tables full of friends. This is what a night at Bremen looks like.</p>
+  </div>
+
+  <div class="marquee left">
+    <div class="m-card"><img src="garden.jpg" alt="Beer garden" loading="lazy"><span>The Garden</span></div>
+    <div class="m-card"><img src="steins.jpg" alt="Beer steins" loading="lazy"><span>Fresh Pours</span></div>
+    <div class="m-card"><img src="dish-schnitzel.jpg" alt="Schnitzel" loading="lazy"><span>Jägerschnitzel</span></div>
+    <div class="m-card"><img src="g1.jpg" alt="Bremen Beer Garden" loading="lazy"><span>Good Company</span></div>
+    <div class="m-card"><img src="pretzel.jpg" alt="Pretzel" loading="lazy"><span>Fresh Baked</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="m-card" aria-hidden="true"><img src="garden.jpg" alt="" loading="lazy"><span>The Garden</span></div>
+    <div class="m-card" aria-hidden="true"><img src="steins.jpg" alt="" loading="lazy"><span>Fresh Pours</span></div>
+    <div class="m-card" aria-hidden="true"><img src="dish-schnitzel.jpg" alt="" loading="lazy"><span>Jägerschnitzel</span></div>
+    <div class="m-card" aria-hidden="true"><img src="g1.jpg" alt="" loading="lazy"><span>Good Company</span></div>
+    <div class="m-card" aria-hidden="true"><img src="pretzel.jpg" alt="" loading="lazy"><span>Fresh Baked</span></div>
+  </div>
+
+  <div class="marquee right">
+    <div class="m-card"><img src="dish-brat.jpg" alt="Wurst platter" loading="lazy"><span>Wurst Platter</span></div>
+    <div class="m-card"><img src="hero.jpg" alt="Dining hall" loading="lazy"><span>The Hall</span></div>
+    <div class="m-card"><img src="dish-pretzel.jpg" alt="Giant pretzel" loading="lazy"><span>Giant Pretzel</span></div>
+    <div class="m-card"><img src="g5.jpg" alt="Bremen Beer Garden" loading="lazy"><span>Live Music</span></div>
+    <div class="m-card"><img src="steins.jpg" alt="Steins" loading="lazy"><span>Prost!</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="m-card" aria-hidden="true"><img src="dish-brat.jpg" alt="" loading="lazy"><span>Wurst Platter</span></div>
+    <div class="m-card" aria-hidden="true"><img src="hero.jpg" alt="" loading="lazy"><span>The Hall</span></div>
+    <div class="m-card" aria-hidden="true"><img src="dish-pretzel.jpg" alt="" loading="lazy"><span>Giant Pretzel</span></div>
+    <div class="m-card" aria-hidden="true"><img src="g5.jpg" alt="" loading="lazy"><span>Live Music</span></div>
+    <div class="m-card" aria-hidden="true"><img src="steins.jpg" alt="" loading="lazy"><span>Prost!</span></div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Prost!</span><span>Cold Steins</span><span>Long Tables</span><span>Live Polka</span><span>Fresh Pretzels</span><span>Good Company</span>
+      <span>Prost!</span><span>Cold Steins</span><span>Long Tables</span><span>Live Polka</span><span>Fresh Pretzels</span><span>Good Company</span>
+    </div>
+  </div>
+</section>
 
 <!-- ========== ABOUT ========== -->
 <section id="about">
